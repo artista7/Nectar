@@ -8,7 +8,7 @@
   angular.module('BlurAdmin.pages', [
     'ui.router',
     'BlurAdmin.pages.main',
-    'BlurAdmin.pages.dashboard',
+    // 'BlurAdmin.pages.dashboard',
     //'BlurAdmin.pages.ui',
     // 'BlurAdmin.pages.components',
     //'BlurAdmin.pages.form',
@@ -17,7 +17,7 @@
     //'BlurAdmin.pages.maps',
     'BlurAdmin.pages.profile',
     'BlurAdmin.pages.roadmap',
-    'BlurAdmin.pages.test',
+    // 'BlurAdmin.pages.test',
   ])
       .config(routeConfig);
 

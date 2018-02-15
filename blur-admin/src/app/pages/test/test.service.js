@@ -101,7 +101,7 @@
     function GraphDataServce($http, $q){
         var graphData = undefined;
         var service = {
-            getGraphData : function(coin, interval, limit = 500){
+            getGraphData : function(coin, interval, limit){
                 var symbol = coin.toUpperCase() + "BTC";
                 if(!graphData){
                     var deferred = $q.defer;
