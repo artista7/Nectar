@@ -8,10 +8,6 @@
   angular.module('BlurAdmin.pages', [
     'ui.router',
     'BlurAdmin.pages.main',
-    //'BlurAdmin.pages.ui',
-    //'BlurAdmin.pages.charts',
-    //'BlurAdmin.pages.maps',
-    'BlurAdmin.pages.profile',
     'BlurAdmin.pages.roadmap',
     // 'BlurAdmin.pages.test',
   ])
