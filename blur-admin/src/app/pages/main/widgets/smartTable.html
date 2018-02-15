@@ -37,7 +37,8 @@
               <tr ng-repeat="item in formData.coinMarketData">
                 <td class="table-id">{{item.rank}}</td>
                 <td><i class="cc {{item.symbol}}"></i></td> 
-                <td ui-sref="main.detail({symbol: item.symbol})"><a href="" target="">{{item.name}}</a></td>
+                <!-- <td ui-sref="main.detail({symbol: item.symbol})"><a href="" target="">{{item.name}}</a></td> -->
+                <td><a href="" target="">{{item.name}}</a></td>
                 <td class="align-right">{{item.market_cap_usd | currency}}</td>
                 <td class="align-right">{{item.price_usd | currency}}</td>
                 <td class="align-right" ng-style="dataColor({{item.percent_change_24h}})">{{item.percent_change_24h}}</td>

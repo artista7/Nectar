@@ -1,0 +1,5 @@
+./blur-admin/node_modules/
+./blur-admin/bower_components/
+./blur-admin/.gitignore
+./crypto-exchange-api/.gitignore
+./crypto-exchange-api/node_modules/

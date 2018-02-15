@@ -28,7 +28,21 @@ services:
 
   mongodb:
     container_name: mongo
-    image: mongo
+    build:
+      context: .
+      dockerfile: ./.docker/docker-mongo.dockerfile
+    ports:
+      - "27017:27017"
+    env_file:
+      - ./.docker/env/mongo.${APP_ENV}.env
+    networks:
+      - nectarApp-network
+
+  mongodb:
+    container_name: mongo
+    build:
+      context: .
+      dockerfile: ./.docker/docker-mongo.dockerfile
     volumes:
       - "./data:/data/db"
     ports:
