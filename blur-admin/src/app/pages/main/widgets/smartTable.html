@@ -1,0 +1,57 @@
+<div class="horizontal-scroll">
+    <table class="table" st-table="formData.coinMarketData">
+        <form class="row form-inline">
+            <div class="form-group col-sm-3 col-xs-6">
+                <label>Rows on page
+                    <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+                            ng-model="formData.smartTablePageSize" ng-options="i for i in [5,10,15,20,25,50]">
+                    </select>
+            </div>
+            <!-- <div class="form-group col-sm-3 col-xs-6">
+                <label>Currency
+                    <select class="form-control selectpicker show-tick" title="Select Currency" selectpicker
+                    ng-model="formData.selectedCurrency" ng-options="c for c in currencies">
+                    </select>
+            </div> -->
+          </form>
+        <thead>
+            <tr>
+              <th class="table-id">Rank</th>
+              <th class="browser-icons"></th>
+              <th>Name</th>
+              <th class="align-right">Market Cap</th>
+              <th class="align-right">Price</th>
+              <th class="align-right">Change(24h)</th>
+            </tr>
+            <tr>
+              <th></th>
+              <th></th>
+              <th><input st-search="name" placeholder="Search Coin" class="input-sm form-control search-input"
+                        type="search"/></th>
+              <th></th>
+              <th></th>
+              <th></th>           
+            </tr>
+          </thead>
+          <tbody>
+              <tr ng-repeat="item in formData.coinMarketData">
+                <td class="table-id">{{item.rank}}</td>
+                <td><i class="cc {{item.symbol}}"></i></td> 
+                <td ui-sref="main.detail({symbol: item.symbol})"><a href="" target="">{{item.name}}</a></td>
+                <td class="align-right">{{item.market_cap_usd | currency}}</td>
+                <td class="align-right">{{item.price_usd | currency}}</td>
+                <td class="align-right" ng-style="dataColor({{item.percent_change_24h}})">{{item.percent_change_24h}}</td>
+                <td class="table-arr"><i ng-class="{'icon-up': item.percent_change_24h > 0, 'icon-down': item.percent_change_24h < 0 }"></i></td>
+              </tr>
+          </tbody>
+          <tfoot>
+              <tr>
+                <td colspan="6" class="text-center">
+                  <div st-pagination="" st-items-by-page="formData.smartTablePageSize" st-displayed-pages="5"></div>
+                </td>
+              </tr>
+            </tfoot>
+    </table>
+
+    <ui-view></ui-view>
+  </div>

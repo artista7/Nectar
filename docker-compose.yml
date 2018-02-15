@@ -1,0 +1,18 @@
+version: '2' # specify docker-compose version
+
+# Define the services/containers to be run
+services:
+  angularJS: # name of the first service
+    build:
+      context: blur-admin # specify the directory of the Dockerfile
+      dockerfile: angular.Dockerfile
+    image: fucksprouts/node
+    ports:
+      - "3000:3000" # specify port forewarding
+    volumes:
+      - ./blur-admin/src:/app/src
+
+  express: #name of the second service
+    build: crypto-exchange-api # specify the directory of the Dockerfile
+    ports:
+      - "9000:9000" #specify ports forewarding

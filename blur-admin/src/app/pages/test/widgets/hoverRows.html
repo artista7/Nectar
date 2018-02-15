@@ -1,0 +1,32 @@
+<div class="horizontal-scroll">
+  <table class="table table-hover">
+    <thead>
+    <tr class="black-muted-bg">
+      <th class="coins-icons"></th>
+      <th>Coins\Exchange</th>
+      <th class="align-right">Koinex</th>
+      <!-- <th class="table-arr"></th> -->
+      <th class="align-right">Zebpay</th>
+      <!-- <th class="table-arr"></th> -->
+      <th class="align-right">Coinome</th>
+      <!-- <th class="table-arr"></th> -->
+      <!-- <th class="align-right">CoinMarketData</th>
+      <th class="table-arr"></th> -->
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="(key, value) in comparisonData track by $index" class="no-top-border">
+      <td><i class="cc {{key}}"></i></td>
+      <td ng-class="nowrap"><a href="" target="">{{key}}</a></td>
+      <td class="align-right" ng-style="value.koinex.price === undefined && {'color':'red', 'font-style': 'italic', 'font-size':'12px'}">{{value.koinex.price ? value.koinex.price + ' Rs': 'Not Traded'}}</td>
+      <!-- <td class="table-arr"><i ng-class="{'icon-up': item.isVisitsUp, 'icon-down': !item.isVisitsUp }"></i></td> -->
+      <td class="align-right" ng-style="value.coinome.price === undefined && {'color':'red', 'font-style': 'italic', 'font-size':'12px'}">{{value.coinome.price ? value.coinome.price + ' Rs': 'Not Traded'}}</td>
+      <!-- <td class="table-arr"><i ng-class="{'icon-up': item.isPurchasesUp, 'icon-down': !item.isPurchasesUp }"></i></td> -->
+      <td class="align-right" ng-style="value.zebpay.price === undefined && {'color':'red', 'font-style': 'italic', 'font-size':'12px'}">{{value.zebpay.price ? value.zebpay.price + ' Rs' : 'Not Traded'}}</td>
+      <!-- <td class="table-arr"><i ng-class="{'icon-up': item.isPercentUp, 'icon-down': !item.isPercentUp }"></i></td> -->
+      <!-- <td class="align-right">{{value.coinmarketdata}}</td>
+      <td class="table-arr"><i ng-class="{'icon-up': item.isPercentUp, 'icon-down': !item.isPercentUp }"></i></td> -->
+    </tr>
+    </tbody>
+  </table>
+</div>
