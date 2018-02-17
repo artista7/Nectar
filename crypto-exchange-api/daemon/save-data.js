@@ -4,18 +4,19 @@ const coinomeMapper = require('../mapper/coinome.mapper');
 const zebapiMapper = require('../mapper/zepapi.mapper');
 const axios = require('axios');
 const MongoClient = require('mongodb').MongoClient;
+const dbConstants = require('../consts/config').get();
 
 
 
 saveData = function() {
-    MongoClient.connect('mongodb://rajatraj733:dbpwd@ds133558.mlab.com:33558/crypto', (err, database) => {
+    MongoClient.connect(dbConstants.url, (err, database) => {
         if(err) {
             console.log(err);
             return;
         }
         console.log('connected to database');
 
-        var db = database.db('crypto');
+        var db = database.db(dbConstants.database);
         axios.all([
             axios.get('https://koinex.in/api/ticker'),
             axios.get('https://www.coinome.com/api/v1/ticker.json'),
@@ -40,7 +41,7 @@ saveData = function() {
                 timestamp,
                 data: coinOrientedData
             };
-            db.collection('crypto-data').insertOne(data, function (err, result) {
+            db.collection(dbConstants.collection).insertOne(data, function (err, result) {
                 if(err) {
                     console.log(err);
                     return;
