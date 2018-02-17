@@ -23,6 +23,9 @@ CryptoDataService =  {
                     return;
                 }
                 // console.log(docs[0]);
+                if(!docs[0]) {
+                    reject(new Error('Collections not defined'))
+                }
                 resolve(docs[0]);
 
                 client.close();

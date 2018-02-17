@@ -44,6 +44,8 @@ router.get('/comparison', function (req, res) {
            res.send(cache.data);
         }).catch(function (error) {
             console.log(error);
+            res.status(500);
+            res.send(error);
         });
     } else {
         console.log('serving from cache');
