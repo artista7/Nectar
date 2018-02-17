@@ -10,7 +10,7 @@ var config = {
     },
     development: {
         database: {
-            url: 'mongodb://mongodb_test:27107/crypto',
+            url: 'mongodb://mongodb/crypto',
             database: 'crypto',
             collection: 'crypto-data'
         }

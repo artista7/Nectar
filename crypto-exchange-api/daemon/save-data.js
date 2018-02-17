@@ -4,7 +4,7 @@ const coinomeMapper = require('../mapper/coinome.mapper');
 const zebapiMapper = require('../mapper/zepapi.mapper');
 const axios = require('axios');
 const MongoClient = require('mongodb').MongoClient;
-const dbConstants = require('../consts/config').get();
+const dbConstants = require('../consts/config').get().database;
 
 
 
