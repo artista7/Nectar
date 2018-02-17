@@ -1,6 +1,6 @@
 
 const MongoClient = require('mongodb').MongoClient;
-const dbConstants = require('../consts/db.server');
+const dbConstants = require('../consts/config').get();
 
 
 
@@ -8,7 +8,7 @@ CryptoDataService =  {
     getLatestData: () => {
         return new Promise(function(resolve, reject) {
 
-        MongoClient.connect(dbConstants.url, (err, client)=> {
+        MongoClient.connect(dbConstants.url, (err, client) => {
             if(err) {
                 console.log(err);
                 reject(err);
