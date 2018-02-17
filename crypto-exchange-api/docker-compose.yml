@@ -1,0 +1,33 @@
+version: '2' # specify docker-compose version
+
+# Define the services/containers to be run
+services:
+  node_test: #name of the second service
+    container_name: node_test
+    build:
+      context: . # specify the directory of the Dockerfile
+      dockerfile: ./node.dockerfile
+    volumes:
+      - .:/app/
+    env_file:
+      - ./env/node.${APP_ENV}.env
+    ports:
+      - "9000:9000" #specify ports forewarding
+    depends_on: 
+      - mongodb_test
+    networks:
+      - test-network
+
+  mongodb_test:
+    container_name: mongodb_test
+    image: mongo
+    volumes:
+      - "./data:/data/db"
+    ports:
+      - "27017:27017"
+    networks:
+      - test-network
+
+networks:
+  test-network:
+    driver: bridge

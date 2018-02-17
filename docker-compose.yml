@@ -25,9 +25,11 @@ services:
       - ./.docker/env/node.${APP_ENV}.env
     ports:
       - "9000:9000" #specify ports forewarding
+    networks:
+      - nectarApp-network
 
   mongodb:
-    container_name: mongo
+    container_name: mongodb
     image: mongo
     volumes:
       - "./data:/data/db"
