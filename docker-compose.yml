@@ -16,8 +16,34 @@ services:
     networks:
       - nectarApp-network
 
-  node: #name of the second service
-    container_name: node
+  nginx:
+    build: ./nginx
+    links:
+        - node1:node1
+        - node2:node2
+    ports:
+        - "80:80"
+    networks:
+      - nectarApp-network
+
+  node1: #name of the second service
+    container_name: node1
+    build:
+      context: . # specify the directory of the Dockerfile
+      dockerfile: ./.docker/docker-node.dockerfile
+    volumes:
+      - ./crypto-exchange-api/:/app/
+    env_file:
+      - ./.docker/env/node.${APP_ENV}.env
+    ports:
+      - "9000:9000" #specify ports forewarding
+    depends_on: 
+      - mongodb
+    networks:
+      - nectarApp-network
+
+  node2: #name of the second service
+    container_name: node2
     build:
       context: . # specify the directory of the Dockerfile
       dockerfile: ./.docker/docker-node.dockerfile
@@ -36,7 +62,8 @@ services:
     container_name: mongodb
     image: mongo
     volumes:
-      - "./data:/data/db"
+      - "./data/db:/data/db"
+      - "./data/configdb:/data/configdb"
     ports:
       - "27017:27017"
     env_file:
