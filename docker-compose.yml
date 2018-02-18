@@ -11,7 +11,7 @@ services:
       - "3000:3000" # specify port forewarding
     volumes:
       - ./blur-admin/src:/app/src
-    depends_on: 
+    depends_on:
       - node
     networks:
       - nectarApp-network
@@ -27,14 +27,17 @@ services:
       - ./.docker/env/node.${APP_ENV}.env
     ports:
       - "9000:9000" #specify ports forewarding
-    depends_on: 
+    depends_on:
       - mongodb
     networks:
       - nectarApp-network
 
   mongodb:
     container_name: mongodb
-    image: mongo
+#    image: mongo
+    build:
+        context: .
+        dockerfile: ./.docker/docker-mongo.dockerfile
     volumes:
       - "./data:/data/db"
     ports:

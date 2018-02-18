@@ -13,14 +13,14 @@ ROLE=${MONGODB_ROLE}
 echo "Starting mongodb to add users and roles..."
 /usr/bin/mongod &
 while ! nc -vz localhost 27017; do sleep 1; done
-
-# Create User if values exist 
-if [[ -n $ROOT_USER ]] && [[ -n $ROOT_PASS]] && [[ -n $ROOT_DB]] && [[ -n $ROOT_ROLE]]; then
+echo "Adding users"
+# Create User if values exist
+if [ -n $ROOT_USER ] && [ -n $ROOT_PASS ] && [ -n $ROOT_DB ] && [ -n $ROOT_ROLE ]; then
     echo "Creating root user: \"$ROOT_USER\"..."
-    mongo $DB --eval "db.createUser({ user: '$USEROOT_USERR', pwd: '$ROOT_PASS', roles: [ { role: '$ROOT_ROLE', db: '$ROOT_DB' } ] });"
+    mongo $ROOT_DB --eval "db.createUser({ user: '$ROOT_USER', pwd: '$ROOT_PASS', roles: [ { role: '$ROOT_ROLE', db: '$ROOT_DB' } ] });"
 fi 
 
-if [[ -n $USER ]] && [[ -n $PASS]] && [[ -n $DB]] && [[ -n $ROLE]]; then
+if [ -n $USER ] && [ -n $PASS ] && [ -n $DB ] && [ -n $ROLE ]; then
     echo "Creating user: \"$USER\"..."
     mongo $DB --eval "db.createUser({ user: '$USER', pwd: '$PASS', roles: [ { role: '$ROLE', db: '$DB' } ] });"
 fi
