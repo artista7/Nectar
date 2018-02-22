@@ -9,13 +9,14 @@ COPY ./.docker/config/nginx.conf /etc/nginx/nginx.conf
 #COPY ./blur-admin/src/assets/ /var/www/public
 
 #copy certificates
+COPY ./.docker/certificates/nginx.crt /etc/nginx/ssl/nginx.crt
+COPY ./.docker/certificates/nginx.key /etc/nginx/ssl/nginx.key
 
 #ccopy DHE handshake d dhparam
 
 #make cert key only available to owner
 
-EXPOSE 80 
-#443
+EXPOSE 80 443
 
 ENTRYPOINT ["nginx"]
 
