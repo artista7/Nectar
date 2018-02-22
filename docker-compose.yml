@@ -12,17 +12,25 @@ services:
     volumes:
       - ./blur-admin/src:/app/src
     depends_on: 
-      - node
+      - nginx
     networks:
       - nectarApp-network
 
   nginx:
-    build: ./nginx
+    container_name: nginx
+    build:
+      context: . # specify the directory of the Dockerfile
+      dockerfile: ./.docker/docker-nginx.dockerfile
+    volumes:
+      - ./.docker/config/nginx.conf:/etc/nginx/nginx.conf
     links:
         - node1:node1
         - node2:node2
     ports:
         - "80:80"
+    depends_on: 
+      - node1
+      - node2
     networks:
       - nectarApp-network
 
@@ -52,7 +60,7 @@ services:
     env_file:
       - ./.docker/env/node.${APP_ENV}.env
     ports:
-      - "9000:9000" #specify ports forewarding
+      - "9001:9000" #specify ports forewarding
     depends_on: 
       - mongodb
     networks:

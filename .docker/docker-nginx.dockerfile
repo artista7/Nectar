@@ -2,13 +2,11 @@ FROM nginx:latest
 
 MAINTAINER shanty
 
-VOLUME /var/cache/nginx
-
 #copy custom nginx config
 COPY ./.docker/config/nginx.conf /etc/nginx/nginx.conf
 
 #copy static files
-COPY ./blur-admin/src/assets/ /var/www/public
+#COPY ./blur-admin/src/assets/ /var/www/public
 
 #copy certificates
 
@@ -16,7 +14,8 @@ COPY ./blur-admin/src/assets/ /var/www/public
 
 #make cert key only available to owner
 
-EXPOSE 80 443
+EXPOSE 80 
+#443
 
 ENTRYPOINT ["nginx"]
 
