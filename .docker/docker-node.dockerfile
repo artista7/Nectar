@@ -9,14 +9,16 @@ WORKDIR /app
 
 #copying scripts
 COPY ./.docker/node_scripts /node_scripts
-
 RUN chmod +rx /node_scripts/*.sh
 
 # Copy dependency definitions
-COPY ./crypto-exchange-api/ /app
+COPY ./crypto-exchange-api/package.json /app
 
 # Install dependecies
 RUN npm install
+
+# Get all the code needed to run the app
+COPY ./crypto-exchange-api/ /app
 
 # Expose the port the app runs in
 EXPOSE 9000
