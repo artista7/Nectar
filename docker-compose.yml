@@ -34,12 +34,12 @@ services:
 
   mongodb:
     container_name: mongodb
-#    image: mongo
     build:
         context: .
         dockerfile: ./.docker/docker-mongo.dockerfile
     volumes:
-      - "./data:/data/db"
+      - "./data/db:/data/db"
+      - "./data/configdb:/data/configdb"
     ports:
       - "27017:27017"
     env_file:

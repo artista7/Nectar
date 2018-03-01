@@ -3,16 +3,16 @@
 var config = {
     production: {
         database: {
-            url: 'mongodb://rajatraj733:dbpwd@ds133558.mlab.com:33558/crypto',
+            url: 'mongodb://mongodb/crypto',
             database: 'crypto',
-            collection: 'crypto-data'
+            collection: 'cryptoData'
         }
     },
     development: {
         database: {
             url: 'mongodb://mongodb/crypto',
             database: 'crypto',
-            collection: 'crypto-data'
+            collection: 'cryptoData'
         }
     }
 };

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Initialize first run
-if [[ -e /.firstrun ]]; then
+if [ -e /.firstrun ]; then
 
     # echo "scheduling ackup cron job for 13:00"
     # cat <(crontab -l) <(echo "00 13 * * * /mongo_scripts/backup_job.sh") | crontab -
