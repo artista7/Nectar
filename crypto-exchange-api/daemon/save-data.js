@@ -51,7 +51,10 @@ saveData = function() {
                 
             });
 
-        }))
+        })).catch((error) => {
+            console.log(error);
+            database.close();
+        })
 
     });
 }
