@@ -20,6 +20,8 @@ EXPOSE 80 443
 
 ENTRYPOINT ["nginx"]
 
+#ENTRYPOINT ["/nginx_scripts/run.sh"]
+
 CMD ["-g", "daemon off;"]
 
 #To build dockerfile

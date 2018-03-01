@@ -17,7 +17,7 @@
       getCrypto: function(){
         if(!cryptoData){
           var deferred = $q.defer();
-          $http.get('http://localhost/api/coinmarketdata', { cache: true }).then(function(resp) {
+          $http.get('https://localhost/api/coinmarketdata', { cache: true }).then(function(resp) {
           //$http.get('https://api.coinmarketcap.com/v1/ticker/', { cache: true }).then(function(resp) {
               cryptoData =  resp.data;
               deferred.resolve(cryptoData);
@@ -40,7 +40,7 @@
         getComparisonData: function(){
             if(!cryptoData){
                 var deferred = $q.defer();
-                $http.get('http://localhost/api/comparison', { cache: true }).then(function(resp) {
+                $http.get('https://localhost/api/comparison', { cache: true }).then(function(resp) {
                 //$http.get('https://api.coinmarketcap.com/v1/ticker/', { cache: true }).then(function(resp) {
                     cryptoData =  resp.data;
                     deferred.resolve(cryptoData);
