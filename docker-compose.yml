@@ -8,7 +8,7 @@ services:
       context: . # specify the directory of the Dockerfile
       dockerfile: ./.docker/docker-angularjs.dockerfile
     ports:
-      - "3000:3000" # specify port forewarding
+      - "80:3000" # specify port forewarding
     volumes:
       - ./blur-admin/src:/app/src
     depends_on:
