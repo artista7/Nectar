@@ -15,4 +15,4 @@ fi
 
 # Start MongoDB
 echo "Starting MongoDB..."
-/usr/bin/mongod --auth $@
+/usr/bin/mongod --auth --bind_ip_all $@
