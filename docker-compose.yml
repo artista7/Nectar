@@ -14,7 +14,7 @@ services:
     depends_on:
       - node
     networks:
-      - nectarApp-network
+      - CryptoBeeApp-network
 
   node: #name of the second service
     container_name: node
@@ -30,7 +30,7 @@ services:
     depends_on:
       - mongodb
     networks:
-      - nectarApp-network
+      - CryptoBeeApp-network
 
   mongodb:
     container_name: mongodb
@@ -45,8 +45,8 @@ services:
     env_file:
       - ./.docker/env/mongo.${APP_ENV}.env
     networks:
-      - nectarApp-network
+      - CryptoBeeApp-network
 
 networks:
-  nectarApp-network:
+  CryptoBeeApp-network:
     driver: bridge
