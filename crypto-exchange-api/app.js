@@ -9,7 +9,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var api = require('./routes/api');
 
-var whiteList = ['http://localhost:3000', 'http://localhost:9000'];
+var whiteList = ['http://localhost:3000', 'http://localhost:9000', 'http://localhost', 'https://localhost', 'https://localhost:3000'];
 
 var corsOptions = {
   origin: function (origin, callback) {

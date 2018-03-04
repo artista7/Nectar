@@ -2,15 +2,15 @@ FROM nginx:latest
 
 MAINTAINER shanty
 
-VOLUME /var/cache/nginx
-
 #copy custom nginx config
 COPY ./.docker/config/nginx.conf /etc/nginx/nginx.conf
 
 #copy static files
-COPY ./blur-admin/src/assets/ /var/www/public
+#COPY ./blur-admin/src/assets/ /var/www/public
 
 #copy certificates
+COPY ./.docker/certificates/nginx.crt /etc/nginx/ssl/nginx.crt
+COPY ./.docker/certificates/nginx.key /etc/nginx/ssl/nginx.key
 
 #ccopy DHE handshake d dhparam
 
@@ -19,6 +19,8 @@ COPY ./blur-admin/src/assets/ /var/www/public
 EXPOSE 80 443
 
 ENTRYPOINT ["nginx"]
+
+#ENTRYPOINT ["/nginx_scripts/run.sh"]
 
 CMD ["-g", "daemon off;"]
 

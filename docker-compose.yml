@@ -2,22 +2,44 @@ version: '2' # specify docker-compose version
 
 # Define the services/containers to be run
 services:
+  
+
+  nginx:
+    container_name: nginx
+    build:
+      context: . # specify the directory of the Dockerfile
+      dockerfile: ./.docker/docker-nginx.dockerfile
+    volumes:
+      - ./.docker/config/nginx.conf:/etc/nginx/nginx.conf
+      - ./.docker/certificates/nginx.crt:/etc/nginx/ssl/nginx.crt
+      - ./.docker/certificates/nginx.key:/etc/nginx/ssl/nginx.key
+    links:
+        - node1:node1
+        #- node2:node2
+    ports:
+        - "80:80"
+        #- "443:443"
+    depends_on:
+      - angularjs
+    networks:
+      - CryptoBeeApp-network
+
   angularjs: # name of the first service
     container_name: angularjs
     build:
       context: . # specify the directory of the Dockerfile
       dockerfile: ./.docker/docker-angularjs.dockerfile
     ports:
-      - "80:3000" # specify port forewarding
+      - "3000:3000" # specify port forewarding
     volumes:
       - ./blur-admin/src:/app/src
     depends_on:
-      - node
+      - node1
     networks:
       - CryptoBeeApp-network
 
-  node: #name of the second service
-    container_name: node
+  node1: #name of the second service
+    container_name: node1
     build:
       context: . # specify the directory of the Dockerfile
       dockerfile: ./.docker/docker-node.dockerfile
@@ -31,6 +53,22 @@ services:
       - mongodb
     networks:
       - CryptoBeeApp-network
+
+  # node2: #name of the second service
+  #   container_name: node2
+  #   build:
+  #     context: . # specify the directory of the Dockerfile
+  #     dockerfile: ./.docker/docker-node.dockerfile
+  #   volumes:
+  #     - ./crypto-exchange-api/:/app/
+  #   env_file:
+  #     - ./.docker/env/node.${APP_ENV}.env
+  #   ports:
+  #     - "9001:9000" #specify ports forewarding
+  #   depends_on: 
+  #     - mongodb
+  #   networks:
+  #     - CryptoBeeApp-network
 
   mongodb:
     container_name: mongodb
