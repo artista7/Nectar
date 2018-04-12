@@ -17,7 +17,7 @@
       getCrypto: function(){
         if(!cryptoData){
           var deferred = $q.defer();
-          $http.get('http://cryptobee.in/api/coinmarketdata', { cache: true }).then(function(resp) {
+          $http.get('http://www.cryptobee.in/api/coinmarketdata', { cache: true }).then(function(resp) {
           //$http.get('https://api.coinmarketcap.com/v1/ticker/', { cache: true }).then(function(resp) {
               cryptoData =  resp.data;
               deferred.resolve(cryptoData);
@@ -40,7 +40,7 @@
         getComparisonData: function(){
             if(!cryptoData){
                 var deferred = $q.defer();
-                $http.get('http://cryptobee.in/api/comparison', { cache: true }).then(function(resp) {
+                $http.get('http://www.cryptobee.in/api/comparison', { cache: true }).then(function(resp) {
                 //$http.get('https://api.coinmarketcap.com/v1/ticker/', { cache: true }).then(function(resp) {
                     cryptoData =  resp.data;
                     deferred.resolve(cryptoData);
