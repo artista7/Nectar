@@ -1,10 +1,10 @@
-FROM mongo:latest
+FROM mongo:3.6.2
 
 MAINTAINER Shanty
 
 RUN apt-get update && apt-get install -y netcat
 
-COPY ./.docker/mongo_scripts /mongo_scripts
+COPY ./.docker/mongo/scripts /mongo_scripts
 
 RUN chmod +rx /mongo_scripts/*.sh
 RUN touch /.firstrun

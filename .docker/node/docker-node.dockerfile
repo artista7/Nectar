@@ -8,7 +8,7 @@ RUN mkdir -p /app
 WORKDIR /app
 
 #copying scripts
-COPY ./.docker/node_scripts /node_scripts
+COPY ./.docker/node/scripts /node_scripts
 RUN chmod +rx /node_scripts/*.sh
 
 # Copy dependency definitions
