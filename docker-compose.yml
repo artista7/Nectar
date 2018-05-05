@@ -3,27 +3,27 @@ version: '2' # specify docker-compose version
 # Define the services/containers to be run
 services:
   
-  nginx:
-    container_name: nginx
-    build:
-      context: . # specify the directory of the Dockerfile
-      dockerfile: ./.docker/nginx/docker-nginx.dockerfile
-    volumes:
-      - ./.docker/nginx/config/nginx.conf:/etc/nginx/nginx.conf
-      - ./.docker/nginx/certificates/nginx.crt:/etc/nginx/ssl/nginx.crt
-      - ./.docker/nginx/certificates/nginx.key:/etc/nginx/ssl/nginx.key
-    env_file:
-      - ./.docker/nginx/env/nginx.${APP_ENV}.env
-    links:
-        - node1:node1
-        #- node2:node2
-    ports:
-        - "80:80"
-        #- "443:443"
-    depends_on:
-      - angularjs
-    networks:
-      - CryptoBeeApp-network
+  # nginx:
+  #   container_name: nginx
+  #   build:
+  #     context: . # specify the directory of the Dockerfile
+  #     dockerfile: ./.docker/nginx/docker-nginx.dockerfile
+  #   volumes:
+  #     - ./.docker/nginx/config/nginx.conf:/etc/nginx/nginx.conf
+  #     - ./.docker/nginx/certificates/nginx.crt:/etc/nginx/ssl/nginx.crt
+  #     - ./.docker/nginx/certificates/nginx.key:/etc/nginx/ssl/nginx.key
+  #   env_file:
+  #     - ./.docker/nginx/env/nginx.${APP_ENV}.env
+  #   links:
+  #       - node1:node1
+  #       #- node2:node2
+  #   ports:
+  #       - "80:80"
+  #       #- "443:443"
+  #   depends_on:
+  #     - angularjs
+  #   networks:
+  #     - CryptoBeeApp-network
 
   angularjs: # name of the first service
     container_name: angularjs
@@ -41,37 +41,37 @@ services:
     networks:
       - CryptoBeeApp-network
 
-  node1: #name of the second service
-    container_name: node1
-    build:
-      context: . # specify the directory of the Dockerfile
-      dockerfile: ./.docker/node/docker-node.dockerfile
-    volumes:
-      - ./crypto-exchange-api/:/app/
-    env_file:
-      - ./.docker/node/env/node.${APP_ENV}.env
-    ports:
-      - "9000:9000" #specify ports forewarding
-    depends_on:
-      - mongodb
-    networks:
-      - CryptoBeeApp-network
+#   node1: #name of the second service
+#     container_name: node1
+#     build:
+#       context: . # specify the directory of the Dockerfile
+#       dockerfile: ./.docker/node/docker-node.dockerfile
+#     volumes:
+#       - ./crypto-exchange-api/:/app/
+#     env_file:
+#       - ./.docker/node/env/node.${APP_ENV}.env
+#     ports:
+#       - "9000:9000" #specify ports forewarding
+#     depends_on:
+#       - mongodb
+#     networks:
+#       - CryptoBeeApp-network
 
-  mongodb:
-    container_name: mongodb
-    build:
-        context: .
-        dockerfile: ./.docker/mongo/docker-mongo.dockerfile
-    volumes:
-      - "./data/db:/data/db"
-      - "./data/configdb:/data/configdb"
-    ports:
-      - "27017:27017"
-    env_file:
-      - ./.docker/mongo/env/mongo.${APP_ENV}.env
-    networks:
-      - CryptoBeeApp-network
+#   mongodb:
+#     container_name: mongodb
+#     build:
+#         context: .
+#         dockerfile: ./.docker/mongo/docker-mongo.dockerfile
+#     volumes:
+#       - "./data/db:/data/db"
+#       - "./data/configdb:/data/configdb"
+#     ports:
+#       - "27017:27017"
+#     env_file:
+#       - ./.docker/mongo/env/mongo.${APP_ENV}.env
+#     networks:
+#       - CryptoBeeApp-network
 
-networks:
-  CryptoBeeApp-network:
-    driver: bridge
+# networks:
+  # CryptoBeeApp-network:
+  #   driver: bridge
