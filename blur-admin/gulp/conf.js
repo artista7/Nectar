@@ -8,6 +8,23 @@
 
 var gutil = require('gulp-util');
 
+exports.environments = {
+  development: {
+    ENV_VARS:
+    {
+      comparisonAPI: "http://localhost/api/comparison",
+      coinMarketDataAPI: "http://localhost/api/coinmarketdata"
+    }
+  },
+  production: {
+    ENV_VARS:
+    {
+      comparisonAPI: "http://www.cryptobee.in/api/comparison",
+      coinMarketDataAPI: "http://www.cryptobee.in/api/coinmarketdata"
+    }
+  }
+};
+
 /**
  *  The main paths of your project handle these with care
  */

@@ -53,6 +53,7 @@ build
 /src/release
 /release
 /bower_components
-.env
 npm-debug.log
 .git
+/src/app/config/baConfig.js
+/src/app/config/baConfig.json

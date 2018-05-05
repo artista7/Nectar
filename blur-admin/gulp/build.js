@@ -84,7 +84,7 @@ gulp.task('other', ['copyVendorImages'], function () {
 
   return gulp.src([
     path.join(conf.paths.src, '/**/*'),
-    path.join('!' + conf.paths.src, '/**/*.{html,css,js,scss,md}'),
+    path.join('!' + conf.paths.src, '/**/*.{html,js,scss,md}'),
     path.join(conf.paths.tmp, '/serve/**/assets/img/theme/vendor/**/*')
   ])
     .pipe(fileFilter)
