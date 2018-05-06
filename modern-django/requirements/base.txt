@@ -1,3 +1,4 @@
 Django==1.10.5
 django-environ==0.4.1
 djangorestframework==3.6.2
+python-binance==0.6.9
