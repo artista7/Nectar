@@ -18,7 +18,7 @@ var config = {
 };
 
 module.exports.get = function() {
-    const env = process.env.NODE_ENV || 'development';
+    const env = process.env.APP_ENV || 'development';
     return config[env];
 };
 

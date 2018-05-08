@@ -1,5 +1,5 @@
 import json
-from django.http import HttpResponse
+from django.http import JsonResponse
 from binance.client import Client
 from . import indicators
 from . import utility
@@ -17,4 +17,4 @@ def macd(request):
         myIndicator = indicators.ImprovedMacd(close, factor, coinSymbol)
         _dict[coinSymbol]={'Buy':myIndicator.shouldBuy(), 'changeIndex':myIndicator.getPercentageChange()}
     response_data = _dict
-    return HttpResponse(json.dumps(response_data), content_type="application/json")
+    return JsonResponse(response_data)
