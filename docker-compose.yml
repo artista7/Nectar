@@ -3,23 +3,8 @@ version: '2' # specify docker-compose version
 # Define the services/containers to be run
 services:
 
-  angularjs: # name of the first service
-    container_name: angularjs
-    build:
-      context: . # specify the directory of the Dockerfile
-      dockerfile: ./.docker/angularjs/docker-angularjs.dockerfile
-    ports:
-      - "3000:3000" # specify port forewarding
-    volumes:
-      - ./blur-admin/src:/app/src
-    env_file:
-      - ./.docker/angularjs/env/angularjs.${APP_ENV}.env
-    depends_on:
-      - angularjs
-    networks:
-      - CryptoBeeApp-network
-
   nginx:
+    image: nectar_nginx:1
     container_name: nginx
     build:
       context: . # specify the directory of the Dockerfile
@@ -31,10 +16,27 @@ services:
     env_file:
       - ./.docker/nginx/env/nginx.${APP_ENV}.env
     links:
-        - node:node
+      - node:node
     ports:
-        - "80:80"
-        #- "443:443"
+      - "80:80"
+      #- "443:443"
+    depends_on:
+      - angularjs
+    networks:
+      - CryptoBeeApp-network
+  
+  angularjs: # name of the first service
+    image: nectar_angularjs:1
+    container_name: angularjs
+    build:
+      context: . # specify the directory of the Dockerfile
+      dockerfile: ./.docker/angularjs/docker-angularjs.dockerfile
+    ports:
+      - "3000:3000" # specify port forewarding
+    volumes:
+      - ./blur-admin/src:/app/src
+    env_file:
+      - ./.docker/angularjs/env/angularjs.${APP_ENV}.env
     depends_on:
       - node
       - django
@@ -42,6 +44,7 @@ services:
       - CryptoBeeApp-network
 
   node: #name of the second service
+    image: nectar_node:1
     container_name: node
     build:
       context: . # specify the directory of the Dockerfile
@@ -58,6 +61,7 @@ services:
       - CryptoBeeApp-network
 
   django:
+    image: nectar_django:1
     container_name: django
     build:
       context: .
@@ -72,10 +76,11 @@ services:
       - CryptoBeeApp-network
 
   mongodb:
+    image: nectar_mongodb:1
     container_name: mongodb
     build:
-        context: .
-        dockerfile: ./.docker/mongo/docker-mongo.dockerfile
+      context: .
+      dockerfile: ./.docker/mongo/docker-mongo.dockerfile
     volumes:
       - ./data/db:/data/db
       - ./data/configdb:/data/configdb

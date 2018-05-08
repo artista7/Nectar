@@ -13,7 +13,6 @@ RUN npm install && \
     bower install -F --allow-root --config.interactive=false
 COPY ./blur-admin/ /app
 
-ENV GULP_COMMAND serve:dist
 EXPOSE 3000
 ENTRYPOINT ["sh", "-c"]
 CMD ["gulp $GULP_COMMAND"]
