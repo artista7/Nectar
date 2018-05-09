@@ -1,0 +1,21 @@
+<div class="horizontal-scroll">
+  <table ng-if="macdData" class="table table-hover">
+    <thead>
+    <tr class="black-muted-bg">
+      <th>Coin</th>
+      <th>Buy/Sell</th>
+      <th class="align-center">Macd</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="(key, value) in macdData" class="no-top-border">
+      <td ng-class="nowrap">{{key}}</td>
+      <td>{{value["Buy"]}}</td>
+      <td class="align-center" ng-style="dataColor({{value['changeIndex']}})">{{value["changeIndex"]}}</td>
+    </tr>
+    </tbody>
+  </table>
+  <div ng-if="!macdData">
+    Loading Data
+  </div>
+</div>

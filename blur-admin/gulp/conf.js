@@ -13,14 +13,16 @@ exports.environments = {
     ENV_VARS:
     {
       comparisonAPI: "http://localhost/api/comparison",
-      coinMarketDataAPI: "http://localhost/api/coinmarketdata"
+      coinMarketDataAPI: "http://localhost/api/coinmarketdata",
+      macdAPI: "http://localhost/macd"
     }
   },
   production: {
     ENV_VARS:
     {
       comparisonAPI: "http://www.cryptobee.in/api/comparison",
-      coinMarketDataAPI: "http://www.cryptobee.in/api/coinmarketdata"
+      coinMarketDataAPI: "http://www.cryptobee.in/api/coinmarketdata",
+      macdAPI: "http://cryptobee/macd"
     }
   }
 };

@@ -35,6 +35,10 @@ services:
       - "3000:3000" # specify port forewarding
     volumes:
       - ./blur-admin/src:/app/src
+      - ./blur-admin/gulp:/app/gulp
+      - ./blur-admin/gulpfile.js:/app/gulpfile.js
+      - ./blur-admin/bower.json:/app/bower.json
+      - ./blur-admin/package.json:/app/package.json
     env_file:
       - ./.docker/angularjs/env/angularjs.${APP_ENV}.env
     depends_on:
@@ -51,6 +55,7 @@ services:
       dockerfile: ./.docker/node/docker-node.dockerfile
     volumes:
       - ./crypto-exchange-api/:/app/
+      - ./crypto-exchange-api/package.json:/app/package.json
     env_file:
       - ./.docker/node/env/node.${APP_ENV}.env
     ports:
