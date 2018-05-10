@@ -10,7 +10,7 @@ var config = {
     },
     development: {
         database: {
-            url: 'mongodb://webrole:passwordMongo123!@mongodb/crypto',
+            url: 'mongodb://webrole:webrolePasswordMongo123!@mongodb/crypto',
             database: 'crypto',
             collection: 'cryptoData'
         }

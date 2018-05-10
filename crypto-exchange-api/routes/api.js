@@ -11,7 +11,6 @@ const CryptoDataService = require('../service/crypto-data-service');
 router.get('/', function (req, res, next) {
     axios.get('https://koinex.in/api/ticker').then(
         function(response) {
-            console.dir(response.data);
             res.send(response.data);
         }
     ).catch(function (error) {
