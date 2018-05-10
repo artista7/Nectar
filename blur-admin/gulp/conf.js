@@ -22,7 +22,7 @@ exports.environments = {
     {
       comparisonAPI: "http://www.cryptobee.in/api/comparison",
       coinMarketDataAPI: "http://www.cryptobee.in/api/coinmarketdata",
-      macdAPI: "http://cryptobee.in/macd"
+      macdAPI: "http://www.cryptobee.in/macd"
     }
   }
 };
